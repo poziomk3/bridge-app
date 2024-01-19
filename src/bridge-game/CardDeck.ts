@@ -1,7 +1,7 @@
 import CardSuit from "../card-lib/types/CardSuit";
 import CardValue from "../card-lib/types/CardValue";
 
-type CardType = { value: CardValue; suit: CardSuit };
+export type CardType = { value: CardValue; suit: CardSuit };
 
 export function getCardValue(card: CardType): number {
   return (
