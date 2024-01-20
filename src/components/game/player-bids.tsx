@@ -1,5 +1,5 @@
 import { BidType } from "@/bridge-game/Bidding";
-import { Player } from "@/bridge-game/Players";
+import { PlayerEnum } from "@/bridge-game/Players";
 import { FC } from "react";
 import {
   Table,
@@ -24,7 +24,7 @@ const chunkedArrays = (originalArray: BidType[]) => {
 };
 const PlayerBids: FC<PlayerBidsProps> = ({ bidTable }) => {
   const bids = chunkedArrays(bidTable);
-  const players = Object.values(Player);
+  const players = Object.values(PlayerEnum);
   return (
     <Table className="text-center ">
       {/* <TableCaption>A list of your recent invoices.</TableCaption> */}

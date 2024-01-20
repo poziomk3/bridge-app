@@ -22,7 +22,10 @@ export function createBidArray(): Array<ContractBid> {
   const bidDeck: Array<ContractBid> = [];
   for (let value = 1; value <= 7; value++) {
     for (const suit in ExtendedSuit) {
-      bidDeck.push({ value: value, suit: suit as ExtendedSuit });
+      bidDeck.push({
+        value: value,
+        suit: ExtendedSuit[suit as keyof typeof ExtendedSuit],
+      });
     }
   }
   return bidDeck;

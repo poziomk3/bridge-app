@@ -1,6 +1,7 @@
 enum CardSuit {
-  CLUBS = "CLUBS",
   DIAMONDS = "DIAMONDS",
+  CLUBS = "CLUBS",
+
   HEARTS = "HEARTS",
 
   SPADES = "SPADES",

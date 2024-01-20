@@ -14,6 +14,7 @@ import {
   distributeCardsIntoPlayers,
   shuffleCardDeck,
 } from "@/bridge-game/CardDeck";
+import { countDP, countHCP } from "@/bridge-tactic/AuxCounters";
 import { Card } from "@/card-lib/Card";
 import CardHand from "@/card-lib/implementation/card-hand";
 import CardSuit from "@/card-lib/types/CardSuit";
@@ -40,11 +41,15 @@ const Game = () => {
       : isNoContractBidLegal(bidTable, bid as NoContractBid);
 
   return (
-    <div className="w-[]">
-      {playerCard.map((cards) => (<CardHand cards={cards} />))}
+    <div className="w-3/4 mx-auto">
+      
       <Button onClick={clearBidTable}>clear</Button>
       <BiddingTable handleBid={addBid} isConBidLegal={isBidLegal} />
       <PlayerBids bidTable={bidTable} />
+      {playerCard.map((cards) => (
+        <CardHand cards={cards} />
+      ))}
+     
     </div>
   );
 };
