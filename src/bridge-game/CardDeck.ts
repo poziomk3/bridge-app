@@ -6,7 +6,7 @@ export type CardType = { value: CardValue; suit: CardSuit };
 export function getCardValue(card: CardType): number {
   return (
     Object.values(CardSuit).indexOf(card.suit) * 13 +
-    Object.keys(CardValue).indexOf(card.value)
+    Object.values(CardValue).indexOf(card.value)
   );
 }
 
@@ -14,7 +14,10 @@ export function createCardDeck(): Array<CardType> {
   const cardDeck: Array<CardType> = [];
   for (const suit in CardSuit) {
     for (const value in CardValue) {
-      cardDeck.push({ value: value as CardValue, suit: suit as CardSuit });
+      cardDeck.push({
+        value: CardValue[value as keyof typeof CardValue],
+        suit: CardSuit[suit as keyof typeof CardSuit],
+      });
     }
   }
   return cardDeck;
@@ -35,7 +38,7 @@ export function distributeCardsIntoPlayers(
   const playersCards = [];
   for (let i = 0; i < cards.length; i += 13) {
     const part = cards.slice(i, i + 13);
-    playersCards.push(part);
+    playersCards.push(orderCards(part));
   }
   return playersCards;
 }
