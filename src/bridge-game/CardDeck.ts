@@ -1,22 +1,22 @@
-import CardSuit from "../card-lib/types/CardSuit";
+import CardSuit, { suits } from "../card-lib/types/CardSuit";
 import CardValue from "../card-lib/types/CardValue";
 
 export type CardType = { value: CardValue; suit: CardSuit };
 
 export function getCardValue(card: CardType): number {
   return (
-    Object.values(CardSuit).indexOf(card.suit) * 13 +
+    suits.indexOf(card.suit) * 13 +
     Object.values(CardValue).indexOf(card.value)
   );
 }
 
 export function createCardDeck(): Array<CardType> {
   const cardDeck: Array<CardType> = [];
-  for (const suit in CardSuit) {
+  for (const suit of suits) {
     for (const value in CardValue) {
       cardDeck.push({
         value: CardValue[value as keyof typeof CardValue],
-        suit: CardSuit[suit as keyof typeof CardSuit],
+        suit: suit as CardSuit,
       });
     }
   }

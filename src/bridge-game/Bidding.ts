@@ -1,33 +1,31 @@
+import CardSuit from "@/card-lib/types/CardSuit";
+import { suits } from "@/card-lib/types/CardSuit";
 export enum NoContractBid {
   PASS = "PASS",
   DOUBLE = "DOUBLE",
   REDOUBLE = "REDOUBLE",
 }
-export enum ExtendedSuit {
-  CLUBS = "CLUBS",
-  DIAMONDS = "DIAMONDS",
-  HEARTS = "HEARTS",
-  SPADES = "SPADES",
-  NOTRUMP = "NOTRUMP",
-}
+export type ExtendedSuit = CardSuit | "NOTRUMP";
+export const extendedSuit = [...suits, "NOTRUMP"] as const;
 
 export type ContractBid = { value: number; suit: ExtendedSuit };
 export type BidType = ContractBid | NoContractBid;
 export type BidTable = Array<BidType>;
 
 export function getBidValue(bid: ContractBid): number {
-  return Object.values(ExtendedSuit).indexOf(bid.suit) + (bid.value - 1) * 5;
+  return (bid.value - 1) * 5 + extendedSuit.indexOf(bid.suit);
 }
 export function createBidArray(): Array<ContractBid> {
   const bidDeck: Array<ContractBid> = [];
   for (let value = 1; value <= 7; value++) {
-    for (const suit in ExtendedSuit) {
+    for (const suit of extendedSuit) {
       bidDeck.push({
         value: value,
-        suit: ExtendedSuit[suit as keyof typeof ExtendedSuit],
+        suit: suit as ExtendedSuit,
       });
     }
   }
+  console.log(bidDeck.map((bid) => getBidValue(bid)));
   return bidDeck;
 }
 export function isContractBidLegal(

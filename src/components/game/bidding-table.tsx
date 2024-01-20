@@ -9,9 +9,9 @@ import {
 } from "../ui/table";
 import {
   BidType,
-  ExtendedSuit,
   NoContractBid,
   createBidArray,
+  extendedSuit,
 } from "@/bridge-game/Bidding";
 import { Button } from "../ui/button";
 import Bid from "./bid";
@@ -26,7 +26,7 @@ const BiddingTable: FC<BidingTableProps> = ({
   isConBidLegal: isBidLegal,
 }) => {
   const bids = createBidArray();
-  const suits = Object.values(ExtendedSuit);
+  const suits = Object.values(extendedSuit);
   const noContractBids = Object.values(NoContractBid);
   const numbersArray: number[] = Array.from(
     { length: 7 },

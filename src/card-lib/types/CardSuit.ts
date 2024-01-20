@@ -1,10 +1,5 @@
-enum CardSuit {
-  DIAMONDS = "DIAMONDS",
-  CLUBS = "CLUBS",
 
-  HEARTS = "HEARTS",
+export const suits =["CLUBS", "DIAMONDS" , "HEARTS", "SPADES"] as const;
 
-  SPADES = "SPADES",
-}
-
+type CardSuit = typeof suits[number];
 export default CardSuit;

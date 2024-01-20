@@ -1,5 +1,5 @@
 import { CardType } from "@/bridge-game/CardDeck";
-import CardSuit from "@/card-lib/types/CardSuit";
+import CardSuit, { suits } from "@/card-lib/types/CardSuit";
 import CardValue from "@/card-lib/types/CardValue";
 
 export function countHCP(hand: CardType[]): number {
@@ -21,7 +21,7 @@ export function countHCP(hand: CardType[]): number {
 
 export function countDP(hand: CardType[]): number {
   let count = 0;
-  for (const suit in CardSuit) {
+  for (const suit in suits) {
     if (countSuitLength(hand, suit as CardSuit) === 2) count += 1;
     if (countSuitLength(hand, suit as CardSuit) === 1) count += 2;
     if (countSuitLength(hand, suit as CardSuit) === 0) count += 3;
@@ -31,10 +31,10 @@ export function countDP(hand: CardType[]): number {
 
 export function getHandDistribution(hand: CardType[]): number[] {
   return [
-    countSuitLength(hand, CardSuit.CLUBS),
-    countSuitLength(hand, CardSuit.DIAMONDS),
-    countSuitLength(hand, CardSuit.HEARTS),
-    countSuitLength(hand, CardSuit.SPADES),
+    countSuitLength(hand, "CLUBS" as CardSuit),
+    countSuitLength(hand, "DIAMONDS" as CardSuit),
+    countSuitLength(hand, "HEARTS" as CardSuit),
+    countSuitLength(hand, "SPADES" as CardSuit),
   ];
 }
 
