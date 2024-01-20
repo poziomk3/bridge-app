@@ -1,8 +1,9 @@
-enum Suit {
-  Clubs = "Clubs",
-  Diamonds = "Diamonds",
-  Hearts = "Hearts",
-  Spades = "Spades",
+enum CardSuit {
+  CLUBS = "CLUBS",
+  DIAMONDS = "DIAMONDS",
+  HEARTS = "HEARTS",
+
+  SPADES = "SPADES",
 }
 
-export default Suit;
+export default CardSuit;

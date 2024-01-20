@@ -49,14 +49,23 @@ export function isNoContractBidLegal(bidTable: BidType[], next: NoContractBid) {
     return next === NoContractBid.PASS;
   }
 
-  const bidsAfterLastContract = bidTable.slice(bidTable.indexOf(lastContractBid));
+  const bidsAfterLastContract = bidTable.slice(
+    bidTable.indexOf(lastContractBid)
+  );
 
   if (next === NoContractBid.DOUBLE) {
-    return !(bidsAfterLastContract.includes(NoContractBid.DOUBLE) || areBidsFromSameTeam(bidTable.indexOf(lastContractBid), bidTable.length));
+    return !(
+      bidsAfterLastContract.includes(NoContractBid.DOUBLE) ||
+      areBidsFromSameTeam(bidTable.indexOf(lastContractBid), bidTable.length)
+    );
   }
 
   if (next === NoContractBid.REDOUBLE) {
-    return !(bidsAfterLastContract.includes(NoContractBid.REDOUBLE) || !bidsAfterLastContract.includes(NoContractBid.DOUBLE) || !areBidsFromSameTeam(bidTable.indexOf(lastContractBid), bidTable.length));
+    return !(
+      bidsAfterLastContract.includes(NoContractBid.REDOUBLE) ||
+      !bidsAfterLastContract.includes(NoContractBid.DOUBLE) ||
+      !areBidsFromSameTeam(bidTable.indexOf(lastContractBid), bidTable.length)
+    );
   }
 
   return true;
@@ -101,7 +110,11 @@ export function isBiddingComplete(bidTable: BidTable): boolean {
 
 export function handleBid(bid: BidType, allBids: BidTable): BidTable {
   if (isBiddingComplete(allBids)) return allBids;
-  if (!isContractBid(bid)) return [...allBids, bid];
+  if (
+    !isContractBid(bid) &&
+    isNoContractBidLegal(allBids, bid as NoContractBid)
+  )
+    return [...allBids, bid];
   if (isContractBidLegal(allBids, bid as ContractBid)) {
     return [...allBids, bid];
   }

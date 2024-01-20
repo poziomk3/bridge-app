@@ -1,20 +1,21 @@
 import { FC } from "react";
-import Suit from "../types/CardSuit";
-import Value from "../types/CardValue";
+import { CardType } from "@/bridge-game/CardDeck";
+import CardSuit from "../types/CardSuit";
 
 interface CardProps {
-  suit: Suit;
-  value: Value;
-
+  card: CardType;
 }
 
-const Card: FC<CardProps> = ({suit,value}) => {
-  return <div>
-      {suit}
-      {value}
+const Card: FC<CardProps> = ({ card }) => {
+  return (
+    <div
+      className={`flex flex-col text-[2rem] items-center ${card.suit === CardSuit.HEARTS || card.suit === CardSuit.DIAMONDS ? "text-red-600" : ""}`}
+    >
+      <div className="font-extrabold">{card.value}</div>
 
-    
-  </div>;
+      <img className=" w-[2rem] fill-red-200     "   src={`/src/assets/${card.suit}.svg`} alt="" />
+    </div>
+  );
 };
 
 export default Card;

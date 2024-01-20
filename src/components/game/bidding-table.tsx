@@ -70,19 +70,17 @@ const BiddingTable: FC<BidingTableProps> = ({
           ))}
         </TableBody>
       </Table>
-      <TableRow>
+      <div className="mx-auto flex w-full justify-around">
         {noContractBids.map((bid) => (
-          <TableCell>
-            <Button
-              variant={"ghost"}
-              onClick={() => handleBid(bid)}
-              disabled={!isBidLegal(bid)}
-            >
-              <Bid bid={bid} />
-            </Button>
-          </TableCell>
+          <Button
+            variant={"outline"}
+            onClick={() => handleBid(bid)}
+            disabled={!isBidLegal(bid)}
+          >
+            <Bid bid={bid} />
+          </Button>
         ))}
-      </TableRow>
+      </div>
     </>
   );
 };
