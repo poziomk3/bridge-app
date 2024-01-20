@@ -1,32 +1,37 @@
-import { ExtendedSuit, NoContractBid } from "@/bridge-game/Biding";
-import BidingTable from "@/components/game/biding-table";
+import {
+  BidType,
+  ContractBid,
+  ExtendedSuit,
+  NoContractBid,
+  getLastContractBid,
+  handleBid,
+  isContractBid,
+  isContractBidLegal,
+  isNoContractBidLegal,
+} from "@/bridge-game/Bidding";
+import BiddingTable from "@/components/game/bidding-table";
 import PlayerBids from "@/components/game/player-bids";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 const Game = () => {
+  const [bidTable, setBidTable] = useState<BidType[]>([]);
+  const clearBidTable = () => {
+    setBidTable([]);
+  };
+  const addBid = (bid: BidType) => {
+    setBidTable(handleBid(bid, bidTable));
+  };
+  const isBidLegal = (bid: BidType) =>
+    isContractBid(bid)
+      ? isContractBidLegal(bidTable, bid as ContractBid)
+      : isNoContractBidLegal(bidTable, bid as NoContractBid);
+
   return (
     <div className="w-[800px]">
-      essa
-      <BidingTable />
-      <PlayerBids
-        bidTable={[
-            NoContractBid.PASS,
-          { value: 1, suit: ExtendedSuit.DIAMONDS },
-          { value: 1, suit: ExtendedSuit.CLUBS },
-          { value: 1, suit: ExtendedSuit.CLUBS },
-          NoContractBid.PASS,
-          { value: 1, suit: ExtendedSuit.DIAMONDS },
-          { value: 1, suit: ExtendedSuit.CLUBS },
-          NoContractBid.PASS,
-          { value: 1, suit: ExtendedSuit.DIAMONDS },
-          { value: 1, suit: ExtendedSuit.CLUBS },
-          NoContractBid.PASS,
-          { value: 1, suit: ExtendedSuit.DIAMONDS },
-          { value: 1, suit: ExtendedSuit.CLUBS },
-          NoContractBid.PASS,
-          { value: 1, suit: ExtendedSuit.DIAMONDS },
-          { value: 1, suit: ExtendedSuit.CLUBS },       
-        ]}
-      />
+      <Button onClick={clearBidTable}>clear</Button>
+      <BiddingTable handleBid={addBid} isConBidLegal={isBidLegal} />
+      <PlayerBids bidTable={bidTable} />
     </div>
   );
 };

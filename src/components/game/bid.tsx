@@ -3,7 +3,7 @@ import {
   getContractBid,
   getNoContractBid,
   isContractBid,
-} from "@/bridge-game/Biding";
+} from "@/bridge-game/Bidding";
 import { FC } from "react";
 
 interface BidProps {

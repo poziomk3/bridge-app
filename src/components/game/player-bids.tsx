@@ -1,4 +1,4 @@
-import {  BidType } from "@/bridge-game/Biding";
+import { BidType } from "@/bridge-game/Bidding";
 import { Player } from "@/bridge-game/Players";
 import { FC } from "react";
 import {
@@ -15,7 +15,7 @@ interface PlayerBidsProps {
   bidTable: BidType[];
 }
 const chunkedArrays = (originalArray: BidType[]) => {
-    console.log(originalArray)
+  console.log(originalArray);
   const chunkedArrays: BidType[][] = [];
   for (let i = 0; i < originalArray.length; i += 4) {
     chunkedArrays.push(originalArray.slice(i, i + 4));
@@ -38,12 +38,11 @@ const PlayerBids: FC<PlayerBidsProps> = ({ bidTable }) => {
       <TableBody>
         {bids.map((bidRow) => (
           <TableRow>
-            {bidRow.map((bid) =>
-                <TableCell>
-                    <Bid bid={bid} />
-                </TableCell>
-              
-            )}
+            {bidRow.map((bid) => (
+              <TableCell>
+                <Bid bid={bid} />
+              </TableCell>
+            ))}
           </TableRow>
         ))}
       </TableBody>
