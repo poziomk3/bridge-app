@@ -4,11 +4,11 @@ export enum NoContractBid {
   Redouble,
 }
 export enum ExtendedSuit {
-  Clubs = "Clubs",
-  Diamonds = "Diamonds",
-  Hearts = "Hearts",
-  Spades = "Spades",
-  NoTrump = "NoTrump",
+  CLUBS = "CLUBS",
+  DIAMONDS = "DIAMONDS",
+  HEARTS = "HEARTS",
+  SPADES = "SPADES",
+  NOTRUMP = "NOTRUMP",
 }
 
 export type ContractBid = { value: number; suit: ExtendedSuit };
@@ -16,7 +16,7 @@ export type BidType = ContractBid | NoContractBid;
 export type BidTable = Array<BidType>;
 
 export function getBidValue(bid: ContractBid): number {
-  return Object.values(ExtendedSuit).indexOf(bid.suit) + bid.value * 5;
+  return Object.values(ExtendedSuit).indexOf(bid.suit) + (bid.value-1) * 5;
 }
 export function createBidArray(): Array<ContractBid> {
   const bidDeck: Array<ContractBid> = [];
