@@ -2,18 +2,14 @@ import { FC } from "react";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "../ui/table";
-import {
-  ExtendedSuit,
-  createBidArray,
-  getBidValue,
-} from "@/bridge-game/Biding";
+import { ExtendedSuit, createBidArray } from "@/bridge-game/Biding";
 import { Button } from "../ui/button";
+import Bid from "./bid";
 
 interface BidingTableProps {}
 
@@ -47,14 +43,7 @@ const BidingTable: FC<BidingTableProps> = () => {
               bid.value == number ? (
                 <TableCell>
                   <Button variant={"ghost"}>
-                    <div className="flex  h-full gap-2">
-                      <img
-                        className=""
-                        src={`/src/assets/${bid.suit}.svg`}
-                        alt=""
-                      />
-                      <div>{bid.value}</div>
-                    </div>
+                    <Bid bid={bid} />
                   </Button>
                 </TableCell>
               ) : null
