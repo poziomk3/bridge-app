@@ -1,5 +1,4 @@
-import CardSuit from "@/card-lib/types/CardSuit";
-import { suits } from "@/card-lib/types/CardSuit";
+import CardSuit,{ suits }  from "@/card-lib/types/CardSuit";
 export enum NoContractBid {
   PASS = "PASS",
   DOUBLE = "DOUBLE",
@@ -25,7 +24,6 @@ export function createBidArray(): Array<ContractBid> {
       });
     }
   }
-  console.log(bidDeck.map((bid) => getBidValue(bid)));
   return bidDeck;
 }
 export function isContractBidLegal(

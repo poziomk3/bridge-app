@@ -5,21 +5,16 @@ import {
 } from "@/bridge-tactic/AuxCounters";
 import { CardType } from "./CardDeck";
 
-export enum PlayerEnum {
-  North = "North",
-  East = "East",
-  South = "South",
-  West = "West",
-}
-
+export const players = ["NORTH", "EAST", "SOUTH", "WEST"] as const;
+export type PlayerType = (typeof players)[number];
 export class Player {
-  name: PlayerEnum;
+  name: PlayerType;
   hand: CardType[];
   handDistribution: number[];
   hcp: number;
   dp: number;
   tp: number;
-  constructor(hand: CardType[], name: PlayerEnum) {
+  constructor(hand: CardType[], name: PlayerType) {
     this.hand = hand;
     this.name = name;
     this.hcp = countHCP(hand);

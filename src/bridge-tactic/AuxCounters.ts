@@ -18,6 +18,26 @@ export function countHCP(hand: CardType[]): number {
     }
   }, 0);
 }
+export function isSuitStrong(hand: CardType[], suit: CardSuit): boolean {
+  const points = hand.reduce((acc, card) => {
+    switch (card.suit) {
+      case suit:
+        switch (card.value) {
+          case CardValue.ACE:
+            return acc + 4;
+          case CardValue.KING:
+            return acc + 3;
+          case CardValue.QUEEN:
+            return acc + 2;
+          default:
+            return acc;
+        }
+      default:
+        return acc;
+    }
+  }, 0);
+  return points >= 5;
+}
 
 export function countDP(hand: CardType[]): number {
   let count = 0;
