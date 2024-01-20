@@ -1,2 +1,2 @@
-import Card from "./implementation/Card";
+import Card from "./implementation/card";
 export { Card };
