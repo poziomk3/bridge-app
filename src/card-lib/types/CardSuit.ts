@@ -1,12 +1,8 @@
 enum Suit {
-    Spades = "Spades",
-    Hearts = "Hearts",
-    Clubs = "Clubs",
-    Diamonds = "Diamonds",
+  Clubs = "Clubs",
+  Diamonds = "Diamonds",
+  Hearts = "Hearts",
+  Spades = "Spades",
 }
-
-
-
-
 
 export default Suit;
