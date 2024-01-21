@@ -9,8 +9,8 @@ interface CardHandProps {
 const CardHand: FC<CardHandProps> = ({ cards }) => {
   return (
     <div className="flex gap-2 justify-center w-full">
-      {cards.map((card) => (
-        <Card card={card} />
+      {cards.map((card, index) => (
+        <Card card={card} key={index} />
       ))}
     </div>
   );

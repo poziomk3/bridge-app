@@ -30,15 +30,15 @@ const PlayerBids: FC<PlayerBidsProps> = ({ bidTable }) => {
       <TableHeader>
         <TableRow>
           {players.map((player) => (
-            <TableHead>{player}</TableHead>
+            <TableHead key={player}>{player}</TableHead>
           ))}
         </TableRow>
       </TableHeader>
       <TableBody>
-        {bids.map((bidRow) => (
-          <TableRow>
-            {bidRow.map((bid) => (
-              <TableCell>
+        {bids.map((bidRow,index1) => (
+          <TableRow key={index1}>
+            {bidRow.map((bid,index2) => (
+              <TableCell key={index2}>
                 <Bid bid={bid} />
               </TableCell>
             ))}

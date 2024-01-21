@@ -40,7 +40,7 @@ const BiddingTable: FC<BidingTableProps> = ({
         <TableHeader>
           <TableRow>
             {suits.map((suit) => (
-              <TableHead>
+              <TableHead key={suit}>
                 <img
                   className="h-full mx-auto p-2 text-4"
                   src={`/src/assets/${suit}.svg`}
@@ -52,10 +52,10 @@ const BiddingTable: FC<BidingTableProps> = ({
         </TableHeader>
         <TableBody>
           {numbersArray.map((number) => (
-            <TableRow>
-              {bids.map((bid) =>
+            <TableRow key={number}>
+              {bids.map((bid, index) =>
                 bid.value == number ? (
-                  <TableCell>
+                  <TableCell key={index}>
                     <Button
                       variant={"ghost"}
                       onClick={() => handleBid(bid)}
@@ -71,8 +71,9 @@ const BiddingTable: FC<BidingTableProps> = ({
         </TableBody>
       </Table>
       <div className="mx-auto flex w-full justify-around">
-        {noContractBids.map((bid) => (
+        {noContractBids.map((bid, index) => (
           <Button
+            key={index}
             variant={"outline"}
             onClick={() => handleBid(bid)}
             disabled={!isBidLegal(bid)}

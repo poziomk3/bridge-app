@@ -41,7 +41,7 @@ export function isSuitStrong(hand: CardType[], suit: CardSuit): boolean {
 
 export function countDP(hand: CardType[]): number {
   let count = 0;
-  for (const suit in suits) {
+  for (const suit of suits) {
     if (countSuitLength(hand, suit as CardSuit) === 2) count += 1;
     if (countSuitLength(hand, suit as CardSuit) === 1) count += 2;
     if (countSuitLength(hand, suit as CardSuit) === 0) count += 3;

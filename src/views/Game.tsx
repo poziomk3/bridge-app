@@ -16,6 +16,7 @@ import {
 } from "@/bridge-game/CardDeck";
 import { Player, players } from "@/bridge-game/Players";
 import { isSuitStrong } from "@/bridge-tactic/AuxCounters";
+import { getOpeningBid } from "@/bridge-tactic/OpeningBid";
 import CardHand from "@/card-lib/implementation/card-hand";
 import { suits } from "@/card-lib/types/CardSuit";
 import BiddingTable from "@/components/game/bidding-table";
@@ -24,7 +25,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 const Game = () => {
-  const playerCard = distributeCardsIntoPlayers(
+  const playersArray = distributeCardsIntoPlayers(
     shuffleCardDeck(createCardDeck())
   ).map((cards, index) => new Player(cards, players[index]));
   const [bidTable, setBidTable] = useState<BidType[]>([]);
@@ -44,15 +45,13 @@ const Game = () => {
       <Button onClick={clearBidTable}>clear</Button>
       <BiddingTable handleBid={addBid} isConBidLegal={isBidLegal} />
       <PlayerBids bidTable={bidTable} />
-      {playerCard.map((cards) => (
-        <>
-          {suits.map((suit) =>
-            isSuitStrong(cards.hand, suit) ? <span>{suit}</span> : null
-          )}{" "}
-          {cards.hcp}
-          {cards.handDistribution}
-          <CardHand cards={cards.hand} />{" "}
-        </>
+      {playersArray.map((player) => (
+        <div key={player.name}>
+          {JSON.stringify(getOpeningBid(player))}
+         {/* {player.dp} */}
+          {player.hcp}
+          <CardHand cards={player.hand} />{" "}
+        </div>
       ))}
     </div>
   );
